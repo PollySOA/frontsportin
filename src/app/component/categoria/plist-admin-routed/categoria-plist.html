@@ -128,8 +128,8 @@
             <td>{{ oCategoria.nombre }}</td>
             <td>
               <a [routerLink]="['/temporada', '/view', oCategoria.temporada.id]">
-                @if (oCategoria.temporada.nombre) {
-                  {{ oCategoria.temporada.nombre }} ({{ oCategoria.temporada.id }})
+                @if (oCategoria.temporada.descripcion) {
+                  {{ oCategoria.temporada.descripcion }} ({{ oCategoria.temporada.id }})
                 } @else {
                   @if (oCategoria.temporada.id) {
                     {{ 'Temporada (' + oCategoria.temporada.id + ')' }}
