@@ -2,7 +2,7 @@ import { Component, signal, computed } from '@angular/core';
 import { IEquipo } from '../../../model/equipo';
 import { IPage } from '../../../model/plist';
 import { EquipoService } from '../../../service/equipo';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Paginacion } from '../../shared/paginacion/paginacion';
 import { BotoneraRpp } from '../../shared/botonera-rpp/botonera-rpp';
@@ -10,10 +10,11 @@ import { TrimPipe } from '../../../pipe/trim-pipe';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { debounceTimeSearch } from '../../../environment/environment';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-plist-equipo',
-  imports: [Paginacion, BotoneraRpp, TrimPipe, RouterLink],
+  imports: [Paginacion, BotoneraRpp, TrimPipe, RouterLink, FormsModule],
   templateUrl: './equipo-plist.html',
   styleUrl: './equipo-plist.css',
 })
@@ -39,9 +40,14 @@ export class PlistEquipo {
   private searchSubject = new Subject<string>();
   private searchSubscription?: Subscription;
 
+  // Variables de búsqueda por ID
+  searchId: number | null = null;
+  filtroId = signal<number>(0);
+
   constructor(
     private oEquipoService: EquipoService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -121,5 +127,19 @@ export class PlistEquipo {
   onSearchNombre(value: string) {
     // Emitir el valor al Subject para que sea procesado con debounce
     this.searchSubject.next(value);
+  }
+
+  onSearchById() {
+    if (this.searchId && this.searchId > 0) {
+      this.filtroId.set(this.searchId);
+      // Navegar a la vista del equipo con ese ID
+      this.router.navigate(['/equipo/view', this.searchId]);
+    }
+  }
+
+  clearIdFilter() {
+    this.searchId = null;
+    this.filtroId.set(0);
+    this.getPage();
   }
 }
