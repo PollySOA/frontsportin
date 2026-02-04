@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './tipousuario-view.html',
   styleUrl: './tipousuario-view.css',
 })
-export class TipousuarioViewRouted {
+export class TipousuarioViewAdminRouted {
   // inyecciones
   private route = inject(ActivatedRoute);
   private tipousuarioService = inject(TipousuarioService);
