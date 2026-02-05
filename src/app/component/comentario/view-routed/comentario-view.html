@@ -241,8 +241,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- ...existing code... -->
                                 </div>
                         } @else {
                             <div class="text-muted">Sin usuario asignado.</div>
@@ -305,7 +303,7 @@
                                         <div class="border rounded p-2 bg-white">
                                             <div class="text-muted small text-uppercase">Comentarios</div>
                                             <div class="fw-semibold">
-                                                @if ((oComentario()?.noticia?.comentarios ?? 1) > 1) {
+                                                @if ((oComentario()?.noticia?.comentarios ?? 0) > 1) {
                                                     <a class="text-decoration-none" [routerLink]="['/comentario/noticia', oComentario()?.noticia?.id]">
                                                         {{ oComentario()?.noticia?.comentarios }}
                                                     </a>
