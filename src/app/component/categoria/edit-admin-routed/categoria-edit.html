@@ -17,7 +17,7 @@
         </div>
         <div class="card-body p-4">
 
-          @if (loading) {
+          @if (loading()) {
             <div class="d-flex justify-content-center my-5">
               <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Cargando...</span>
@@ -25,14 +25,14 @@
             </div>
           }
 
-          @if (error && !loading) {
+          @if (error() && !loading()) {
             <div class="alert alert-danger" role="alert">
-              <i class="bi bi-exclamation-triangle me-2"></i>{{ error }}
+              <i class="bi bi-exclamation-triangle me-2"></i>{{ error() }}
             </div>
           }
 
-          @if (!loading && !error) {
-            <form [formGroup]="categoriaForm" (ngSubmit)="enviarFormulario()" novalidate>
+          @if (!loading() && !error()) {
+            <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" novalidate>
               <!-- Nombre -->
               <div class="mb-4">
                 <label for="nombre" class="form-label fw-semibold">
@@ -75,7 +75,7 @@
                   formControlName="id_temporada"
                 >
                   <option [ngValue]="null" disabled>Selecciona una temporada</option>
-                  @for (temporada of temporadas; track temporada.id) {
+                  @for (temporada of temporadas(); track temporada.id) {
                     <option [ngValue]="temporada.id">
                       {{ temporada.descripcion }}
                     </option>
@@ -101,9 +101,9 @@
                 <button
                   type="submit"
                   class="btn btn-warning"
-                  [disabled]="submitting || categoriaForm.invalid"
+                  [disabled]="submitting() || categoriaForm.invalid"
                 >
-                  @if (submitting) {
+                  @if (submitting()) {
                     <span class="spinner-border spinner-border-sm me-1" role="status"></span>
                     Guardando...
                   } @else {
