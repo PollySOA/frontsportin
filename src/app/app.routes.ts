@@ -44,6 +44,8 @@ import { CategoriaViewAdminRouted } from './component/categoria/view-admin-route
 import { LigaViewRouted } from './component/liga/view-routed/liga-view';
 import { ComentarioartViewRouted } from './component/comentarioart/view-routed/comentarioart-view';
 import { PagoDeleteAdminRouted } from './component/pago/delete-admin-routed/pago-delete';
+import { PuntuacionDeleteAdminRouted } from './component/puntuacion/delete-admin-routed/puntuacion-delete';
+import { RolusuarioEditAdminRouted } from './component/rolusuario/edit-admin-routed/rolusuario-edit';
 
 
 export const routes: Routes = [
@@ -81,6 +83,7 @@ export const routes: Routes = [
     { path: 'compra/view/:id', component: CompraViewRouted },
     { path: 'rolusuario', component: RolusuarioPlist },  
     { path: 'rolusuario/view/:id', component: RolusuarioViewAdminRouted},
+    { path: 'rolusuario/edit/:id', component: RolusuarioEditAdminRouted},
     { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/club/:id_club', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/view/:id', component : TipoarticuloViewAdminRouted},
@@ -120,6 +123,7 @@ export const routes: Routes = [
     { path: 'puntuacion/noticia/:id_noticia', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/usuario/:id_usuario', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/view/:id', component: PuntuacionViewRouted},
+    { path: 'puntuacion/delete/:id', component: PuntuacionDeleteAdminRouted},
     { path: 'comentarioart', component: ComentarioartPlistAdminRouted},
     { path: 'comentarioart/articulo/:id_articulo', component: ComentarioartPlistAdminRouted},
     { path: 'comentarioart/usuario/:id_usuario', component: ComentarioartPlistAdminRouted},

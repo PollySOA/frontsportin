@@ -1,102 +1,41 @@
-import { Component, signal, computed } from '@angular/core';
-import { IPage } from '../../../model/plist';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, signal, OnInit, inject, Input, Signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Paginacion } from '../../shared/paginacion/paginacion';
-import { BotoneraRpp } from '../../shared/botonera-rpp/botonera-rpp';
-import { TrimPipe } from '../../../pipe/trim-pipe';
-import { IPuntuacion } from '../../../model/puntuacion';
+import { CommonModule } from '@angular/common';
+import { DatetimePipe } from '../../../pipe/datetime-pipe';
 import { PuntuacionService } from '../../../service/puntuacion';
+import { IPuntuacion } from '../../../model/puntuacion';
 
 @Component({
   selector: 'app-puntuacion-detail-unrouted',
-  imports: [Paginacion, BotoneraRpp, TrimPipe, RouterLink],
+  imports: [CommonModule, RouterLink, DatetimePipe],
   templateUrl: './puntuacion-detail.html',
   styleUrl: './puntuacion-detail.css',
 })
-export class PuntuacionDetailAdminUnrouted {
-  oPage = signal<IPage<IPuntuacion> | null>(null);
-  numPage = signal<number>(0);
-  numRpp = signal<number>(5);
+export class PuntuacionDetailAdminUnrouted implements OnInit {
+  @Input() id: Signal<number> = signal(0);
 
-  // Mensajes y total
-  message = signal<string | null>(null);
-  totalRecords = computed(() => this.oPage()?.totalElements ?? 0);
+  private oPuntuacionService = inject(PuntuacionService);
 
-  // Variables de ordenamiento
-  orderField = signal<string>('id');
-  orderDirection = signal<'asc' | 'desc'>('asc');
+  oPuntuacion = signal<IPuntuacion | null>(null);
+  loading = signal(true);
+  error = signal<string | null>(null);
 
-  // Variables de filtro
-  noticia = signal<number>(0);
-  usuario = signal<number>(0);
-
-  constructor(
-    private oPuntuacionService: PuntuacionService,
-    private route: ActivatedRoute,
-  ) {}
-
-  ngOnInit() {
-    const idUsuario = this.route.snapshot.paramMap.get('id_usuario');
-    if (idUsuario) {
-      this.usuario.set(+idUsuario);
-    }
-
-    const idNoticia = this.route.snapshot.paramMap.get('id_noticia');
-    if (idNoticia) {
-      this.noticia.set(+idNoticia);
-    }
-
-    this.getPage();
+  ngOnInit(): void {
+    this.load(this.id());
   }
 
-  getPage() {
-    this.oPuntuacionService
-      .getPage(
-        this.numPage(),
-        this.numRpp(),
-        this.orderField(),
-        this.orderDirection(),
-        this.noticia(),
-        this.usuario(),
-      )
-      .subscribe({
-        next: (data: IPage<IPuntuacion>) => {
-          this.oPage.set(data);
-          if (this.numPage() > 0 && this.numPage() >= data.totalPages) {
-            this.numPage.set(data.totalPages - 1);
-            this.getPage();
-          }
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error(error);
-        },
-      });
-  }
-
-  onOrder(order: string) {
-    if (this.orderField() === order) {
-      this.orderDirection.set(this.orderDirection() === 'asc' ? 'desc' : 'asc');
-    } else {
-      this.orderField.set(order);
-      this.orderDirection.set('asc');
-    }
-    this.numPage.set(0);
-    this.getPage();
-  }
-
-  goToPage(numPage: number) {
-    this.numPage.set(numPage);
-    this.getPage();
-  }
-
-  onRppChange(n: number) {
-    this.numRpp.set(n);
-    this.numPage.set(0);
-    this.getPage();
-  }
-
-  getStars(rating: number): number[] {
-    return Array(5).fill(0).map((_, i) => i + 1);
+  load(id: number) {
+    this.oPuntuacionService.get(id).subscribe({
+      next: (data: IPuntuacion) => {
+        this.oPuntuacion.set(data);
+        this.loading.set(false);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.error.set('Error cargando la puntuación');
+        this.loading.set(false);
+        console.error(err);
+      },
+    });
   }
 }
