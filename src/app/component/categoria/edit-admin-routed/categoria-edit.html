@@ -33,6 +33,20 @@
 
           @if (!loading() && !error()) {
             <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" novalidate>
+              <!-- ID -->
+              <div class="mb-4">
+                <label for="id" class="form-label fw-semibold">
+                  ID
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="id"
+                  formControlName="id"
+                  readonly
+                />
+              </div>
+
               <!-- Nombre -->
               <div class="mb-4">
                 <label for="nombre" class="form-label fw-semibold">
