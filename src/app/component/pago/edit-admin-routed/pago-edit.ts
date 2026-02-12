@@ -149,9 +149,7 @@ export class PagoEditAdminRouted implements OnInit {
 
     this.submitting.set(true);
 
-    /* El backend espera `java.time.LocalDateTime`.
-    Desde el input type="date" recibimos YYYY-MM-DD.
-    Por el log del backend, el formato esperado es: "YYYY-MM-DD HH:mm:ss" (con espacio, no con 'T'). */
+    
     const fechaForm: string = this.pagoForm.value.fecha;
     const fechaLocalDateTime = fechaForm
       ? (fechaForm.length > 10
