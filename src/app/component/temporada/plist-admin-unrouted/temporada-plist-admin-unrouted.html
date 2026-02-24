@@ -1,5 +1,4 @@
 <div class="p-5">
-  <!-- Búsqueda por descripción -->
   <div class="d-flex justify-content-center my-2">
     <input
       class="form-control me-2"
@@ -12,12 +11,10 @@
     />
   </div>
 
-  <!-- Filtros -->
   <div class="d-flex justify-content-center my-3">
     <small class="text-muted">Total registros: {{ totalRecords() || 0 }}</small>
     @if (club() > 0) {
       <small class="text-muted ms-3">Filtro: id de club = {{ club() }}</small>
-      <!-- quitar el filtro -->
       <a class="ms-2" [routerLink]="['/temporada']" role="button" title="Quitar filtro"
         ><i class="bi bi-x-lg" aria-hidden="true"></i> Quitar filtro</a
       >
@@ -26,7 +23,7 @@
       <small class="text-muted ms-3">Filtro: descripción contiene "{{ descripcion() }}"</small>
     }
   </div>
-  <!-- Ocultar paginación y RPP si no hay registros -->
+
   @if (totalRecords() > 0) {
     <div class="d-flex justify-content-between my-1">
       <app-paginacion
@@ -37,6 +34,14 @@
       </app-paginacion>
 
       <app-botonera-rpp [numRpp]="numRpp()" (rppChange)="onRppChange($event)"> </app-botonera-rpp>
+    </div>
+  }
+
+  @if (!isDialogMode()) {
+    <div class="d-flex justify-content-end mb-2">
+      <a class="btn btn-primary" [routerLink]="['/temporada/new']" role="button">
+        <i class="bi bi-plus-lg me-1" aria-hidden="true"></i> Nueva Temporada
+      </a>
     </div>
   }
 
@@ -121,7 +126,6 @@
               }
             </td>
 
-            <!-- Acciones -->
             <td>
               @if (isDialogMode()) {
                 <div class="d-flex justify-content-center">

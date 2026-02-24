@@ -56,6 +56,10 @@ export class TemporadaService {
     return this.oHttp.put<ITemporada>(`${serverURL}/temporada`, temporada);
   }
 
+  create(temporada: Partial<ITemporada> & { club?: Partial<IClub> }): Observable<ITemporada> {
+    return this.oHttp.post<ITemporada>(`${serverURL}/temporada`, temporada);
+  }
+
 
   count(): Observable<number> {
     return this.oHttp.get<number>(serverURL + '/temporada/count');
@@ -64,4 +68,6 @@ export class TemporadaService {
   delete(id: number): Observable<number> {
     return this.oHttp.delete<number>(serverURL + '/temporada/' + id);
   }
+
+
 }

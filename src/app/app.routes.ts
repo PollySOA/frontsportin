@@ -81,6 +81,7 @@ import { UsuarioEditAdminRouted } from './component/usuario/edit-admin-routed/us
 import { JugadorEditAdminRouted } from './component/jugador/edit-admin-routed/jugador-edit';
 import { CompraEditAdminRouted } from './component/compra/edit-admin-routed/compra-edit';
 import { PartidoEditAdminRouted } from './component/partido/edit-admin-routed/partido-edit';
+import { TemporadaNewAdminRouted } from './component/temporada/new-admin-routed/temporada-new';
 
 
 export const routes: Routes = [
@@ -97,6 +98,7 @@ export const routes: Routes = [
     { path: 'temporada/edit/:id', component: TemporadaEditAdminRouted },
     { path: 'temporada/view/:id', component: TemporadaViewAdminRouted },
     { path: 'temporada/delete/:id', component: TemporadaDeleteAdminRouted },
+    { path:  'temporada/new', component: TemporadaNewAdminRouted },
     { path: 'liga', component: LigaPlistAdminRouted },
     { path: 'liga/view/:id', component: LigaViewRouted },
     { path: 'liga/delete/:id', component: LigaDeleteAdminRouted },
