@@ -1,23 +1,23 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CategoriaViewComponent } from './categoria-view/categoria-view.component';
+import { CategoriaViewAdminRouted } from './categoria-view';
 
-describe('CategoriaViewComponent', () => {
-  let component: CategoriaViewComponent;
-  let fixture: ComponentFixture<CategoriaViewComponent>;
+describe('CategoriaViewAdminRouted', () => {
+  let component: CategoriaViewAdminRouted;
+  let fixture: ComponentFixture<CategoriaViewAdminRouted>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoriaViewComponent ]
+      declarations: [ CategoriaViewAdminRouted ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategoriaViewComponent);
+    fixture = TestBed.createComponent(CategoriaViewAdminRouted);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -31,6 +31,7 @@ import { EquipoViewRouted } from './component/equipo/view-admin-routed/equipo-vi
 import { EquipoDeleteAdminRouted } from './component/equipo/delete-admin-routed/equipo.delete';
 import { EquipoEditAdminRouted } from './component/equipo/edit-admin-routed/equipo-edit';
 import { EquipoNewAdminRouted } from './component/equipo/new-admin-routed/equipo-new';
+import { CarritoNewAdminRouted } from './component/carrito/new-admin-routed/carrito-new';
 import { CarritoPlistAdminRouted } from './component/carrito/plist-admin-routed/carrito-plist';
 import { ComentarioPlistAdminRouted } from './component/comentario/plist-admin-routed/comentario-plist';
 import { ComentarioViewRouted } from './component/comentario/view-routed/comentario-view';
@@ -179,6 +180,7 @@ export const routes: Routes = [
     { path: 'equipo/view/:id', component: EquipoViewRouted },
     { path: 'equipo/delete/:id', component: EquipoDeleteAdminRouted },
     { path: 'equipo/usuario/:id_usuario', component: PlistEquipo },
+    { path: 'carrito/new', component: CarritoNewAdminRouted },
     { path: 'carrito', component: CarritoPlistAdminRouted },
     { path: 'carrito/usuario/:id_usuario', component: CarritoPlistAdminRouted },
     { path: 'carrito/articulo/:id_articulo', component: CarritoPlistAdminRouted },

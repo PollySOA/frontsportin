@@ -62,6 +62,10 @@ export class CarritoService {
     return this.oHttp.put<number>(this.carritoURL, carrito);
   }
 
+  create(carrito: Partial<ICarrito>): Observable<number> {
+    return this.oHttp.post<number>(this.carritoURL, carrito);
+  }
+
   delete(id: number) {
     return this.oHttp.delete<number>(`${this.carritoURL}/${id}`);
   }
