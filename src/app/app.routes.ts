@@ -43,6 +43,7 @@ import { PuntuacionNewAdminRouted } from './component/puntuacion/new-admin-route
 import { NoticiaViewAdminRouted } from './component/noticia/view-admin-routed/view-admin-routed';
 import { FacturaViewAdminRouted } from './component/factura/view-admin-routed/factura-view';
 import { ComentarioartPlistAdminRouted } from './component/comentarioart/plist-admin-routed/comentarioart-plist';
+import { ComentarioartNewAdminRouted } from './component/comentarioart/new-admin-routed/comentarioart-new';
 import { TemporadaViewAdminRouted } from './component/temporada/view-admin-routed/temporada-view';
 import { TemporadaDeleteAdminRouted } from './component/temporada/delete-admin-routed/temporada-delete';
 import { PagoViewAdminRouted } from './component/pago/view-admin-routed/pago-view';
@@ -210,6 +211,7 @@ export const routes: Routes = [
   { path: 'puntuacion/edit/:id', component: PuntuacionEditAdminRouted },
   { path: 'puntuacion/delete/:id', component: PuntuacionDeleteAdminRouted },
   { path: 'comentarioart', component: ComentarioartPlistAdminRouted },
+  { path: 'comentarioart/new', component: ComentarioartNewAdminRouted },
   { path: 'comentarioart/articulo/:id_articulo', component: ComentarioartPlistAdminRouted },
   { path: 'comentarioart/usuario/:id_usuario', component: ComentarioartPlistAdminRouted },
   { path: 'comentarioart/view/:id', component: ComentarioartViewRouted },

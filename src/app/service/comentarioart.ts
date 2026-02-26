@@ -80,6 +80,10 @@ export class ComentarioartService {
         return this.oHttp.put<number>(serverURL + '/comentarioart', comentarioart);
     }
 
+    create(comentarioart: Partial<IComentarioart>): Observable<number> {
+        return this.oHttp.post<number>(serverURL + '/comentarioart', comentarioart);
+    }
+
     delete(id: number): Observable<number> {
         return this.oHttp.delete<number>(serverURL + '/comentarioart/' + id);
     }
