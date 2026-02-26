@@ -40,6 +40,7 @@ import { PagoPlistComponent } from './component/pago/plist-admin-routed/pago-pli
 import { PuntuacionPlistAdminRouted } from './component/puntuacion/plist-admin-routed/puntuacion-plist';
 import { PuntuacionViewRouted } from './component/puntuacion/view-routed/puntuacion-view';
 import { PuntuacionEditAdminRouted } from './component/puntuacion/edit-admin-routed/puntuacion-edit';
+import { PuntuacionNewAdminRouted } from './component/puntuacion/new-admin-routed/puntuacion-new';
 import { NoticiaViewAdminRouted } from './component/noticia/view-admin-routed/view-admin-routed';
 import { FacturaViewAdminRouted } from './component/factura/view-admin-routed/factura-view';
 import { ComentarioartPlistAdminRouted } from './component/comentarioart/plist-admin-routed/comentarioart-plist';
@@ -207,6 +208,7 @@ export const routes: Routes = [
     { path: 'puntuacion', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/noticia/:id_noticia', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/usuario/:id_usuario', component: PuntuacionPlistAdminRouted},
+    { path: 'puntuacion/new', component: PuntuacionNewAdminRouted},
     { path: 'puntuacion/view/:id', component: PuntuacionViewRouted},
     { path: 'puntuacion/edit/:id', component: PuntuacionEditAdminRouted},
     { path: 'puntuacion/delete/:id', component: PuntuacionDeleteAdminRouted},
